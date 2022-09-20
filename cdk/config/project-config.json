@@ -1,0 +1,9 @@
+{
+    "batchService": {
+        "ecrRepoArn": "arn:aws:ecr:us-east-2:513549300100:repository/magna/elct/fisk/fisk-aws-mrr-validation",
+        "imageTag": "latest",
+        "jobvCpus": "1",
+        "jobMemory": "2048",
+        "computeEnvMaxvCpus": 256
+    }
+}

@@ -1,8 +1,8 @@
 from io import BytesIO
 import os
 import boto3
-from types import List
-from uuid import uuid2
+from typing import List
+from uuid import uuid4
 
 BATCH_JOB_MANIFEST_BUCKET_NAME = os.environ["BATCH_JOB_MANIFEST_BUCKET_NAME"]
 
@@ -31,7 +31,7 @@ def get_multiplication_jobs() -> List[List[int]]:
 def write_multiplication_jobs(buffer: bytes, jobs: List[List[int]]) -> None:
     # write jobs to csv
     for job in jobs:
-        job_entry = ",".join(job) + "\n"
+        job_entry = ",".join([str(j) for j in job]) + "\n"
         data = bytes(job_entry, "utf-8")
         buffer.write(data)
     
@@ -42,7 +42,7 @@ def rewind_buffer(buffer) -> None:
 
 def lambda_handler(event, context):
     # unique id to identify the array job
-    array_job_id = uuid2()
+    array_job_id = str(uuid4())
     
     # get jobs
     jobs = get_multiplication_jobs()
@@ -53,7 +53,7 @@ def lambda_handler(event, context):
     rewind_buffer(buffer)
     
     # upload
-    object_name = f"{array_job_id}-batch-manifest.csv"
+    object_name = f"{array_job_id}.csv"
     upload_to_aws(buffer, object_name)
     
     return {
