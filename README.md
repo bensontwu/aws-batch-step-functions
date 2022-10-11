@@ -6,7 +6,7 @@ AWS Batch Job Arrays take this further by allowing teams to process many similar
 
 ## Architecture Diagram
 
-![batch-step (1)](https://user-images.githubusercontent.com/40438500/194972211-76646e89-36e3-45e4-b212-8c724e08388a.png)
+![batch-step (2)](https://user-images.githubusercontent.com/40438500/194972806-0091259f-4abf-4c6b-a18e-75b466b74bea.png)
 
 ## Orhestrator State Machine Graph
 
